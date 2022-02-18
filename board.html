@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3 style="text-align: center">Caro Game Simple</h3>
+<p style="text-align: center" id="carogame"></p>
+</body>
+<script>
+    let b = document.getElementById("carogame");
+
+    let board = [];
+    let data = "";
+    for (let i = 0; i < 3; i++) {
+        board[i] =  Array('.', '.', '.');
+    }
+    //tạo '.' đủ số lượng hàng và cột
+    for (let i = 0; i < 3; i++) {
+        data += "<br/>";
+        for (let j = 0; j < 3; j++) {
+            data += board[i][j] + "&nbsp;&nbsp;";
+        }
+    }
+    //căn chỉnh các giá trị đã được tạo để thành bàn cờ 3x3
+
+    data += "<br/><br/><input type='button' value='Change Value' onclick='changeValue()'>"
+    b.innerHTML = data;
+    console.log('data =====> ',data)
+    let nguoiChoi = false;
+
+    function checkXWin() {
+        if(board[0][0]==='x'&&board[0][1]==='x'&&board[0][2]==='x'){
+            alert('Play X win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[1][0]==='x'&&board[1][1]==='x'&&board[1][2]==='x'){
+            alert('Play X win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[2][0]==='x'&&board[2][1]==='x'&&board[2][2]==='x'){
+            alert('Play X win!')
+            nguoiChoi = false;
+            return;
+        }
+        //ngang
+        if(board[0][0]==='x'&&board[1][1]==='x'&&board[2][2]==='x'){
+            alert('Play X win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[0][2]==='x'&&board[1][1]==='x'&&board[2][0]==='x'){
+            alert('Play X win!')
+            nguoiChoi = false;
+            return;
+        }
+        //chéo
+        if(board[0][0]==='x'&&board[1][0]==='x'&&board[2][0]==='x'){
+            alert('Play X win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[0][1]==='x'&&board[1][1]==='x'&&board[2][1]==='x'){
+            alert('Play X win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[0][2]==='x'&&board[1][2]==='x'&&board[2][2]==='x'){
+            alert('Play X win!')
+            nguoiChoi = false;
+            return;
+        }
+    //    dọc
+    }
+    function checkOWin() {
+        if(board[0][0]==='o'&&board[0][1]==='o'&&board[0][2]==='o'){
+            alert('Play O win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[1][0]==='o'&&board[1][1]==='o'&&board[1][2]==='o'){
+            alert('Play O win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[2][0]==='o'&&board[2][1]==='o'&&board[2][2]==='o'){
+            alert('Play O win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[0][0]==='o'&&board[1][1]==='o'&&board[2][2]==='o'){
+            alert('Play O win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[0][2]==='o'&&board[1][1]==='o'&&board[2][0]==='o'){
+            alert('Play O win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[0][0]==='x'&&board[1][0]==='o'&&board[2][0]==='o'){
+            alert('Play O win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[0][1]==='o'&&board[1][1]==='o'&&board[2][1]==='o'){
+            alert('Play O win!')
+            nguoiChoi = false;
+            return;
+        }
+        if(board[0][2]==='o'&&board[1][2]==='o'&&board[2][2]==='o'){
+            alert('Play O win!')
+            nguoiChoi = false;
+            return;
+        }
+    }
+    function changeValue() {
+        nguoiChoi = !nguoiChoi;
+        //gán giá trị mới cho biến người chơi !var ~ khác ( người chơi =false; !người chơi=true)
+        let positionX = prompt("X: ");
+        let positionY = prompt("Y: ");
+        data = "";
+        if(nguoiChoi){
+            if(board[positionX][positionY]==='o'){
+                alert('vị trí này đã được chọn')
+                nguoiChoi = false;
+                return;
+            }
+            board[positionX][positionY] = "x";
+        //    thay '.' bằng 'x'
+        } else {
+            if(board[positionX][positionY]==='x'){
+                alert('vị trí này đã được chọn')
+                nguoiChoi = true;
+                return;
+            }
+            board[positionX][positionY] = "o";
+        }
+
+        for (let i = 0; i < 3; i++) {
+            data += "<br/>";
+            for (let j = 0; j < 3; j++) {
+                data += board[i][j] + "&nbsp;&nbsp;&nbsp;&nbsp;";
+                //+= nên chỉ cộng thêm vào giá trị đã có sẵn
+                console.log('giá trị tại ij===',board[0][0])
+            }
+        //    for2 căn chỉnh lại bàn cờ
+        }
+        data += "<br/><br/><input type='button' value='Change Value' onclick='changeValue()'>"
+        b.innerHTML = "<hr/>" + data;
+        //đưa giá trị mới vào biến b
+        checkXWin()
+        checkOWin()
+    }
+
+
+
+
+
+
+</script>
+</html>
